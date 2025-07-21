@@ -28,7 +28,9 @@ We split the project into three functional pieces:
    - Methods for `checkout()`, `checkin()`, and copy management  
 
 2. **Library manager (`Library.java`)**  
- // TODO - write necessary comments
+   - Basic library management functionality. The functions include adding books, checking out, returning, and finding books by title/author or ISBN.
+   - Provides a simple interface allowing users to interact with the library
+   - Handles edge cases and errors including print statements that will tell you if there is an unavailable copy, missing books, or invalid commands. 
 
 3. **Persistence (CSV save/load)**  
  // TODO - write necessary comments
