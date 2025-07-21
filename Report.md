@@ -1,7 +1,7 @@
 # Library Management System – Project Report
 
 **Authors:**  
-- Roma Alimchandani   
+- Roma Alimchandani
 - Aditi Bande
 - Elizabeth Leila Chulani 
 - Gabriel Nigussie
@@ -51,13 +51,13 @@ We split the project into three functional pieces:
 | `saveToFile(String path)`  | O(n)             | O(1) buffer (streaming) |
 | `loadFromFile(String path)`| O(n)             | O(1) buffer (streaming) |
 
-> - **n** = number of books in library  
-> - Title/author searches must scan every entry—hence O(n).  
-> - CSV I/O costs are linear in file size.
+- **n** = number of books in the library
+- Title/author searches must scan every entry—hence O(n).  
+- CSV I/O costs are linear in file size.
 
 ---
 
-## 4. Assumptions & Notes
+## 4. Assumptions & Analysis
 // TODO - write necessary comments
 
 
