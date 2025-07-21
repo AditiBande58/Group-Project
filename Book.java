@@ -4,8 +4,6 @@ import java.util.Objects;
  * Encapsulates information about a book in the library system.
  * Supports tracking total and available copies, checkout/checkin,
  * and equality based on title, author, and ISBN.
- *
- * @author Balaji.Srinivasan
  */
 public class Book {
     // Title of the book 
