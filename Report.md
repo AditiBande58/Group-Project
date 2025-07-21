@@ -13,7 +13,7 @@
 
 ## 1. Evidence of Collaboration
 
-Below is a link to a google doc of our Discord messaging threads showing us delegating up our work:
+Below is a link to a Google Doc of our Discord messaging threads showing us delegating up our work:
 
 https://docs.google.com/document/d/1Vc4_2EAXj4HJqVSQAZqebEfJTplr0FOE57W2tb1xdNg/edit?usp=sharing
 
@@ -33,7 +33,7 @@ We split the project into three functional pieces:
 3. **Persistence (CSV save/load)**  
  // TODO - write necessary comments
 
-**Why these DS?**  
+**Why these Data Structures?**  
 // TODO - write necessary comments
 
 ---
