@@ -30,14 +30,20 @@ We split the project into three functional pieces:
 2. **Library manager (`Library.java`)**  
    - Basic library management functionality. The functions include adding books, checking out, returning, and finding books by title/author or ISBN.
    - Provides a simple interface allowing users to interact with the library
-   - Handles edge cases and errors including print statements that will tell you if there is an unavailable copy, missing books, or invalid commands. 
+   - Handles edge cases and errors, including print statements that will tell you if there is an unavailable copy, missing books, or invalid commands. 
 
-3. **Persistence (CSV save/load)**  
- // TODO - write necessary comments
+3. **Persistence (CSV save/load)**
+   - CSV save: Serializes all books in the library to a text file in CSV format
+      - Each line in the file represents a book: title,author,ISBN,publicationYear,totalCopies,availableCopies
+      - This format allows data to be easily saved and shared
 
 **Why these Data Structures?**  
 // TODO - write necessary comments
-
+- ArrayList<Book> was chosen to store books due to:
+   - Efficient random access and iteration
+   - Fast apend operations (O(1) amortized)
+   - Sufficient for small- to medium-scale library system
+- Simpler than HashMap for persistence, since each book contains all identifying metadata, and we aren't doing frequent random lookups by ISBN in the save process 
 ---
 
 ## 3. Big-O Analysis of Key Methods
@@ -61,6 +67,12 @@ We split the project into three functional pieces:
 
 ## 4. Assumptions & Analysis
 // TODO - write necessary comments
+- Book titles/authors do not contain commas (CSV delimiter-safe)
+- Books are stored using ArrayList, assuming the total number of books is modest
+- The file being saved to is writable and the user has permission to create or overwrite it
+- If a file cannot be written (e.g., disk error), the method prints aan error but does not crash the system
+- No need to serialize behavior (methods), only data
+- A line in the file represents a snapshot of the book state at the time of saving 
 
 
 ---
