@@ -1,0 +1,126 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * A library management class. Has a simple shell that users can interact with to add/remove/checkout/list books in the library.
+ * Also allows saving the library state to a file and reloading it from the file.
+ */
+public class Library {
+
+    private List<Book> books = new ArrayList<>();
+
+    /**
+     * @return the number of books (not number of copies) in the library.
+     */
+    public int getNumberOfBooks() {
+        // TODO: Implement this method.
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * Adds a book to the library. If the library already has this book then it
+     * adds the number of copies the library has.
+     */
+    public void addBook(Book book) {
+        // TODO: Implement this method.
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * Checks out the given book from the library. Throw the appropriate
+     * exception if book doesnt exist or there are no more copies available.
+     */
+    public void checkout(String isbn) {
+        // TODO: Implement this method.
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * Returns a book to the library.
+     */
+    public void returnBook(String isbn) {
+        for (Book book : books) {
+            if (book.getIsbn().equalsIgnoreCase(isbn)) {
+                if (book.getAvailableCopies() < book.getTotalCopies()) {
+                    book.setAvailableCopies(book.getAvailableCopies() + 1);
+                    System.out.println("Book returned successfully.");
+                    return;
+                } else {
+                    System.out.println("Error: All copies are already in the library.");
+                    return;
+                }
+            }
+        }
+        System.out.println("Error: Book with ISBN " + isbn + " not found.");
+    }
+
+    /**
+     * Finds this book in the library. Throws appropriate exception if the book
+     * doesnt exist.
+     */
+    public Book findByTitleAndAuthor(String title, String author) {
+        // TODO: Implement this method.
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * Finds this book in the library. Throws appropriate exception if the book
+     * doesnt exist.
+     */
+    public Book findByISBN(String isbn) {
+        // TODO: Implement this method.
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * Saves the contents of this library to the given file.
+     */
+    public void save(String filename) {
+        // TODO: Implement this method.
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /**
+     * Loads the contents of this library from the given file. All existing data
+     * in this library is cleared before loading from the file.
+     */
+    public void load(String filename) {
+        // TODO: Implement this method.
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		while (true) {
+			System.out.print("library> ");
+			String line = scanner.nextLine();
+			// TODO: Implement code 
+			if (line.startsWith("add")) {
+				// TODO: Implement this case.
+			} else if (line.startsWith("checkout")) {
+				// TODO: Implement this case.
+			} else if (line.startsWith("findByTitleAndAuthor")) {
+				// TODO: Implement this case.
+			} else if (line.startsWith("return")) {
+				// Format: return ISBN-1234
+				String[] parts = line.split(" ");
+				if (parts.length == 2) {
+					String isbn = parts[1];
+					new Library().returnBook(isbn);  // for testing
+				} else {
+					System.out.println("Usage: return <isbn>");
+				}
+			} else if (line.startsWith("list")) {
+				// TODO: Implement this case.
+			} else if (line.startsWith("save")) {
+				// TODO: Implement this case.
+			} else if (line.startsWith("load")) {
+				// TODO: Implement this case.
+			} else if (line.startsWith("exit")) {
+				break;
+			}
+		}
+	}
+}
