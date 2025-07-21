@@ -32,8 +32,19 @@ public class Library {
      * exception if book doesnt exist or there are no more copies available.
      */
     public void checkout(String isbn) {
-        // TODO: Implement this method.
-        throw new UnsupportedOperationException("not implemented");
+        for (Book book : books) {
+            if (book.getIsbn().equalsIgnoreCase(isbn)) {
+                if (book.getAvailableCopies() > 0) {
+                    book.setAvailableCopies(book.getAvailableCopies() - 1);
+                    System.out.println("Book checked out successfully.");
+                    return;
+                } else {
+                    System.out.println("Error: No copies available for checkout.");
+                    return;
+                }
+            }
+        }
+        System.out.println("Error: Book with ISBN " + isbn + " not found.");
     }
 
     /**
@@ -100,7 +111,14 @@ public class Library {
 			if (line.startsWith("add")) {
 				// TODO: Implement this case.
 			} else if (line.startsWith("checkout")) {
-				// TODO: Implement this case.
+				// Format: checkout ISBN-1234
+				String[] parts = line.split(" ");
+				if (parts.length == 2) {
+					String isbn = parts[1];
+					new Library().checkout(isbn);
+				} else {
+					System.out.println("Usage: checkout <isbn>");
+				}
 			} else if (line.startsWith("findByTitleAndAuthor")) {
 				// TODO: Implement this case.
 			} else if (line.startsWith("return")) {
