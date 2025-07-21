@@ -8,13 +8,13 @@ import java.util.Objects;
  * @author Balaji.Srinivasan
  */
 public class Book {
-    // Title of the book (immutable)
+    // Title of the book 
     private final String title;
-    // Author of the book (immutable)
+    // Author of the book 
     private final String author;
-    // ISBN identifier (immutable)
+    // ISBN identifier 
     private final String isbn;
-    // Publication year (immutable)
+    // Publication year 
     private final int publicationYear;
     // Total copies in the library
     private int totalCopies;
