@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -72,6 +73,11 @@ public class Library {
      */
     public Book findByTitleAndAuthor(String title, String author) {
         // TODO: Implement this method.
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title) && book.getAuthor().equalsIgnoreCase(author)) {
+                return book;
+            }
+        }
         throw new UnsupportedOperationException("not implemented");
     }
 
@@ -81,6 +87,11 @@ public class Library {
      */
     public Book findByISBN(String isbn) {
         // TODO: Implement this method.
+        for (Book book : books) {
+            if (book.getIsbn().equalsIgnoreCase(isbn)) {
+                return book;
+            }
+        }
         throw new UnsupportedOperationException("not implemented");
     }
 
@@ -103,6 +114,7 @@ public class Library {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+        Library library = new Library();
 
 		while (true) {
 			System.out.print("library> ");
@@ -121,6 +133,25 @@ public class Library {
 				}
 			} else if (line.startsWith("findByTitleAndAuthor")) {
 				// TODO: Implement this case.
+                String[] tokens = line.split(" ");
+                if (tokens.length < 3) {
+                    System.out.println("Error: Invalid format. Usage: findByTitleAndAuthor <title> <author>");
+                    return;
+                }
+                // Combine tokens to reconstruct title and author (only 2 parts assumed)
+                String titleRaw = tokens[1];
+                String authorRaw = tokens[2];
+                // Replace underscores with spaces
+                String title = titleRaw.replace("_", " ");
+                String author = authorRaw.replace("_", " ");
+                try {
+                    Book book = library.findByTitleAndAuthor(title, author); // assumes library is your library object
+                    System.out.println(book.getIsbn() + " " + book.getNumberOfCopies() + " " + book.getAvailableCopies());
+                } 
+                catch (NoSuchElementException e) {
+                    System.out.println("Error: Book not found with title \"" + title + "\" and author \"" + author + "\".");
+                }
+            
 			} else if (line.startsWith("return")) {
 				// Format: return ISBN-1234
 				String[] parts = line.split(" ");
