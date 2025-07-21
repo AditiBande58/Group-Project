@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.io.*;
+
 
 /**
  * A library management class. Has a simple shell that users can interact with to add/remove/checkout/list books in the library.
@@ -99,10 +101,20 @@ public class Library {
      * Saves the contents of this library to the given file.
      */
     public void save(String filename) {
-        // TODO: Implement this method.
-        throw new UnsupportedOperationException("not implemented");
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+        for (Book book : books) {
+            writer.println(book.getTitle() + "," +
+                           book.getAuthor() + "," +
+                           book.getIsbn() + "," +
+                           book.getPublicationYear() + "," +
+                           book.getNumberOfCopies() + "," +
+                           book.getAvailableCopies());
+        }
+        System.out.println("Library saved to " + filename);
+    } catch (IOException e) {
+        System.out.println("Error saving library to file: " + e.getMessage());
     }
-
+}
     /**
      * Loads the contents of this library from the given file. All existing data
      * in this library is cleared before loading from the file.
@@ -114,7 +126,7 @@ public class Library {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-        Library library = new Library();
+        	Library library = new Library();
 
 		while (true) {
 			System.out.print("library> ");
@@ -164,7 +176,13 @@ public class Library {
 			} else if (line.startsWith("list")) {
 				// TODO: Implement this case.
 			} else if (line.startsWith("save")) {
-				// TODO: Implement this case.
+				String[] parts = line.split(" ");
+		                if (parts.length == 2) {
+		                    String filename = parts[1];
+		                    library.save(filename);
+		                } else {
+		                    System.out.println("Usage: save <filename>");
+		                }    
 			} else if (line.startsWith("load")) {
 				// TODO: Implement this case.
 			} else if (line.startsWith("exit")) {
