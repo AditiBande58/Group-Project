@@ -1,8 +1,8 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.io.*;
 
 
 /**
@@ -62,7 +62,7 @@ public class Library {
     public void returnBook(String isbn) {
         for (Book book : books) {
             if (book.getIsbn().equalsIgnoreCase(isbn)) {
-                if (book.getAvailableCopies() < book.getTotalCopies()) {
+                if (book.getAvailableCopies() < book.getNumberOfCopies()) {
                     book.setAvailableCopies(book.getAvailableCopies() + 1);
                     System.out.println("Book returned successfully.");
                     return;
