@@ -16,7 +16,7 @@ public class Library {
      */
     public int getNumberOfBooks() {
         // TODO: Implement this method.
-        throw new UnsupportedOperationException("not implemented");
+        return books.size();
     }
 
     /**
@@ -25,7 +25,13 @@ public class Library {
      */
     public void addBook(Book book) {
         // TODO: Implement this method.
-        throw new UnsupportedOperationException("not implemented");
+        for (Book b : books) {
+            if (b.equals(book)) {
+                b.addCopies(book.getNumberOfCopies());
+                return;
+            }
+        }
+        books.add(book);
     }
 
     /**
@@ -163,6 +169,18 @@ public class Library {
 				}
 			} else if (line.startsWith("list")) {
 				// TODO: Implement this case.
+                String[] tokens = line.split(" ");
+                if (tokens.length < 2) {
+                    System.out.println("Error: Invalid format. Usage: list <isbn>");
+                    return;
+                }
+                String isbn = tokens[1];
+                try {
+                Book book = library.findByISBN(isbn);
+                System.out.println(book.getNumberOfCopies() + " " + book.getAvailableCopies());
+                } catch (NoSuchElementException e) {
+                    System.out.println("Error: Book with ISBN \"" + isbn + "\" not found.");
+                }
 			} else if (line.startsWith("save")) {
 				// TODO: Implement this case.
 			} else if (line.startsWith("load")) {
