@@ -180,19 +180,18 @@ public class Library {
 					System.out.println("Usage: return <isbn>");
 				}
 			} else if (line.startsWith("list")) {
-				// TODO: Implement this case.
-                String[] tokens = line.split(" ");
-                if (tokens.length < 2) {
-                    System.out.println("Error: Invalid format. Usage: list <isbn>");
-                    return;
-                }
-                String isbn = tokens[1];
-                try {
-                Book book = library.findByISBN(isbn);
-                System.out.println(book.getNumberOfCopies() + " " + book.getAvailableCopies());
-                } catch (NoSuchElementException e) {
-                    System.out.println("Error: Book with ISBN \"" + isbn + "\" not found.");
-                }
+		                String[] tokens = line.split(" ");
+		                if (tokens.length < 2) {
+		                    System.out.println("Error: Invalid format. Usage: list <isbn>");
+		                    return;
+		                }
+		                String isbn = tokens[1];
+		                try {
+		                Book book = library.findByISBN(isbn);
+		                System.out.println(book.getNumberOfCopies() + " " + book.getAvailableCopies());
+		                } catch (NoSuchElementException e) {
+		                    System.out.println("Error: Book with ISBN \"" + isbn + "\" not found.");
+		                }
 			} else if (line.startsWith("save")) {
 				String[] parts = line.split(" ");
 		                if (parts.length == 2) {
@@ -202,7 +201,14 @@ public class Library {
 		                    System.out.println("Usage: save <filename>");
 		                }    
 			} else if (line.startsWith("load")) {
-				// TODO: Implement this case.
+				String[] parts = line.split(" ");
+				if (parts.length == 2) {
+					String filename = parts[1];
+				        library.load(filename);
+				        System.out.println("Library loaded from " + filename);
+				    } else {
+				        System.out.println("Usage: load <filename>");
+				    }
 			} else if (line.startsWith("exit")) {
 				break;
 			}
