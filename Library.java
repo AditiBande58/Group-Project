@@ -132,7 +132,7 @@ public class Library {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-        	Library library = new Library();
+        Library library = new Library();
 
 		while (true) {
 			System.out.print("library> ");
